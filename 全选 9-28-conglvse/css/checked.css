@@ -1,0 +1,63 @@
+body,input,p{
+	margin:0;
+	padding:0;
+	}
+.main{
+	width:430px;
+	margin:10px auto;
+	}
+.main>p{
+	display:block;
+	padding:5px;
+	margin-bottom:2px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-khtml-border-radius:5px;
+	box-shadow:1px 1px 2px #ddd;
+	-moz-box-shadow:1px 1px 2px #ddd;
+	-webkit-box-shadow:1px 1px 2px #ddd;
+	background-image: -moz-linear-gradient(top, #fff, #fef); /* Firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#fff), color-stop(1,#fef)); /* Saf4+, Chrome */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fef', GradientType='0'); /* IE*/
+	}
+.main>label{
+	margin-right:10px;
+	}
+.main>label input{
+	margin:8px;
+	cursor:pointer;
+	}
+.main_list label{
+	display:block;
+	height:60px;
+	padding:10px 0;
+	border-bottom:1px dashed #999;
+	cursor:pointer;
+	}
+.main_list label:hover{
+    background-color:#fef;
+	}
+.main_list label input,
+.main_list label img,
+.main_list label p{
+	float:left;
+	color:#333;
+	overflow:auto;
+	}
+.main_list label input{
+	height:58px;
+	line-height:58px;
+	margin-left:8px;
+	}
+.main_list label img{
+	width:58px;
+	margin:0 20px;
+	box-shadow:1px 1px 2px #CCC;
+	-moz-box-shadow:1px 1px 2px #CCC;
+	-webkit-box-shadow:1px 1px 2px #CCC;
+	}
+.main_list label p{
+	width:300px;
+	text-shadow:0 1px #ddd;
+	}

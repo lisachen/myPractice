@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑器</title>
+<link rel="stylesheet" type="text/css" href="../css/css.css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+
+<body>
+<div class="edit">
+	<ul>
+    	<li>
+      	<a href="#" class="edit_b" title="加粗"></a>
+        <a href="#" class="edit_i" title="斜体"></a>
+        <a href="#" class="edit_u" title="加下划线"></a>
+        <a href="#" class="edit_c" title="设置颜色"></a>
+        <a href="#" class="edit_bgcolor" title="设置背景颜色"></a>
+      </li>
+      <li>
+        <a href="#" class="edit_link" title="添加链接"></a>
+        <a href="#" class="edit_unlink" title="取消链接"></a>      	
+      </li>
+      <li>
+        <a href="#" class="edit_ol" title="排序的列表"></a>
+        <a href="#" class="edit_ul" title="非排序的列表"></a>   
+      </li>
+      <li>
+       	<a href="#" class="edit_left" title="左对齐"></a>
+        <a href="#" class="edit_center" title="右对齐"></a>
+        <a href="#" class="edit_right" title="居中对齐"></a>
+      </li>
+    </ul>
+		<textarea>请输入文字...</textarea>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.edit ul li:first').css("border-left","none");
+	$('.edit ul li:last').css("border-right","none");
+	//选中
+	$('.edit ul li a').click(function(){
+		$(this).toggleClass('active');
+		});
+	//加粗	
+	$('.edit_b').click(function(){
+		$('textarea').toggleClass('edit_bold');
+	});
+	//倾斜
+		$('.edit_i').click(function(){
+		$('textarea').toggleClass('edit_italic');
+	});
+	//下划线
+		$('.edit_u').click(function(){
+		$('textarea').toggleClass('edit_underline');
+	});
+		//颜色
+		$('.edit_c').click(function(){
+		$('textarea').toggleClass('edit_color');
+	});
+	//左对齐
+		$('.edit_left').click(function(){
+		$('textarea').toggleClass('edit_left1');
+	});
+	//居中
+		$('.edit_center').click(function(){
+		$('textarea').toggleClass('edit_center1');
+	});
+	//右对齐
+		$('.edit_right').click(function(){
+		$('textarea').toggleClass('edit_right1');
+	});
+});
+
+</script>
+</body>
+</html>

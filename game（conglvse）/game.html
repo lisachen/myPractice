@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/my.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="container">
+	<ul class="column_nav">
+    	<li>板块名称</li>
+        <li>
+            <ul id="nav">
+                <li class="column_nav0 active" id="nav1"><a href="#1">菜单一</a></li>
+                <li class="column_nav0" id="nav2"><a href="#2">菜单二</a></li>
+            </ul>
+        </li>
+        <li class="column_nav_btn1" id="btn"></li>
+    </ul>
+    <div class="column_body">
+    	<!--菜单一-->
+    	<div id="1">
+            <div class="column_body_left">
+                <a href="#"><img src="images/baijia.jpg" /></a>
+            </div>
+            <div class="column_body_mid">
+                <ul>
+                    <li class="column_body_title"><h3>推荐策略</h3><a href="#">更多...</a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                </ul>
+            </div>
+            <div class="column_body_right">
+                <ul>
+                    <li class="column_body_title"><h3>职业资料</h3></li>
+                    <li>职业介绍：经过普通军事训练的步兵，擅长使用轻甲和近战武器。</li>
+                    <li>使用武器：匕首，枪，剑，斧，戟，刀，盾</li>
+                    <li>转职条件：玩家等级10级，强击技能-2级</li>
+                    <li>可转职业：虎卫 | 禁卫 | 白马义从</li>
+                    <li>职业相关资料：</li>
+                    <li>职业测试 | 职业攻略 | 加点模拟器 | 职业技能| 等待更新</li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+		</div>
+        <!--菜单一-end-->
+        <!--菜单二-->
+    	<div id="2" class="hide">
+            <div class="column_body_left">
+                <a href="#"><img src="images/ceshi.jpg" /></a>
+            </div>
+            <div class="column_body_mid">
+                <ul>
+                    <li class="column_body_title"><h3>推荐策略</h3><a href="#">更多...</a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                    <li><a href="#">百家极限篇：从小白到高玩养成教程<em>07-13</em></a></li>
+                </ul>
+            </div>
+            <div class="column_body_right">
+                <ul>
+                    <li class="column_body_title"><h3>职业资料</h3></li>
+                    <li>职业介绍：经过普通军事训练的步兵，擅长使用轻甲和近战武器。</li>
+                    <li>使用武器：匕首，枪，剑，斧，戟，刀，盾</li>
+                    <li>转职条件：玩家等级10级，强击技能-2级</li>
+                    <li>可转职业：虎卫 | 禁卫 | 白马义从</li>
+                    <li>职业相关资料：</li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--菜单二-end-->    
+    </div>    
+</div>
+
+    
+<script type="text/javascript">
+$(function(){
+	//$(".column_body div").hide();
+//	 $(".column_body div:first").show();
+//	alert('1');
+//	$('#nav li').click(function(){
+//			$(this).addClass('active').siblings('li').removeClass('active');
+//			$(".column_body div").hide();
+//			var tt = $(this).attr("href");
+//			$(tt).show();
+//	});
+		
+//	$('#btn').bind("click",function(){
+//		$('.column_body').sildeToggle(function(){
+//				$('#btn').attr('class','column_nav_btn0');
+//				$('.column_body').hide();	
+//			},function(){
+//				$('#btn').attr('class','column_nav_btn1');
+//				$('.column_body').show();
+//			});
+//	});
+	
+	$("#nav li").bind("click",function(){
+		$(this).addClass("active").siblings().removeClass("active");
+		var t=$(this).find("a").attr("href");//$("#nav li a[href="+t+"]")
+		$(t).removeClass('hide').siblings().addClass("hide");
+	});
+	
+	
+//	$("#btn").bind("click",function(){
+//		$(".column_body").slideToggle(function(){
+//				$('#btn').attr('class','column_nav_btn0');
+//				$(this).hide();
+//			},function(){
+//				$('#btn').attr('class','column_nav_btn1');
+//				$(this).show();
+//			});
+//	});
+	
+		$("#btn").bind("click",function(){
+		$(".column_body").slideToggle(function(){
+			if($(this).is(':hidden')){
+				$('#btn').attr('class','column_nav_btn0')
+				$(this).hide();
+			}
+			else{
+				$('#btn').attr('class','column_nav_btn1')
+				$(this).show();
+			}
+		});
+	});
+	
+	
+	//$("#btn").bind("click",function(){
+//		$(".column_body").slideToggle(function(){
+//			if($('#btn').attr('class')=='column_nav_btn1'){
+//				$('#btn').attr('class','column_nav_btn0')
+//				$(this).hide();
+//			}
+//			else{
+//				$('#btn').attr('class','column_nav_btn1')
+//				$(this).show();
+//			}
+//		});
+//	});
+		
+			//if($(this).is(":hidden")){
+//			$("#header #last").css("background-position","0px -34px");
+//			}
+//			else{
+//				$("#header #last").css("background-position","0 0");
+//			}
+//		});
+//	});	
+		
+		//$(function(){
+//		$('#btn').click(function(){
+//			if($(this).attr('class')=='column_nav_btn1'){
+//				$(this).attr('class','column_nav_btn0')
+//				$('.column_body').hide();	
+//			}
+//			else{
+//				$(this).attr('class','column_nav_btn1')
+//				$('.column_body').show();
+//			}
+//		});
+		//$('#nav1').click(function(){
+//			$(this).addClass('active').siblings('li').removeClass('active');
+//			$('#2').hide();
+//			$('#1').show();
+//		});	
+//		$('#nav2').click(function(){
+//			$(this).addClass('active').siblings('li').removeClass('active');
+//			$('#1').hide();
+//			$('#2').show();
+//		});
+
+	});
+
+</script>
+</body>
+</html>

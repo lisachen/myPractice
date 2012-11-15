@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全选</title>
+<link rel="stylesheet" type="text/css" href="../css/checked.css" /> 
+<script type="text/javascript" src="../js/jquery.js"></script>
+<style>
+
+</style>
+<script>
+/*
+//jquery
+$(function(){
+	$('#checkAll').click(function(){
+		if($(this).is(":checked")){
+			$("#main_list input").attr("checked", true);
+		}
+		else{
+			$("#main_list input").attr("checked", false);
+		}
+	});
+});
+*/
+
+//JS
+window.onload=function(){
+	var checkAll=document.getElementById("checkAll");
+	var checkboxs=document.getElementById("main_list").getElementsByTagName("input");
+	checkAll.onclick=function(){
+		
+		 for (var i=0;i<checkboxs.length;i++) {
+			if(checkAll.checked){
+				checkboxs[i].checked=true;
+			 }
+			else{
+				checkboxs[i].checked=false;
+			 }
+		}/*
+		var i = checkboxs.length;
+		while(i--){
+			checkboxs[i].checked = checkAll.checked;
+		}	*/
+	}
+	//删除
+	var del=document.getElementById("del");
+	del.onclick=function(){
+/*
+		for(var i=0;i<checkboxs.length;i++){
+			if(checkboxs[i].checked){
+				checkboxs[i].parentNode.parentNode.removeChild(checkboxs[i].parentNode);
+			}	
+		}*/
+
+		var i=checkboxs.length;
+		while(i--){
+			if(checkboxs[i].checked){
+				checkboxs[i].parentNode.parentNode.removeChild(checkboxs[i].parentNode);
+			}	
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<div class="main">
+	<p>列表名称</p>
+	<div class="main_list" id="main_list">
+		<label>
+			<input type="checkbox"><img src="../images/1.jpg" alt="图片1" />
+			<p>伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~</p>
+		</label>
+		<label>
+			<input type="checkbox"><img src="../images/2.jpg" alt="图片1" />
+			<p>伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~</p>
+		</label>
+		<label>
+			<input type="checkbox"><img src="../images/3.jpg" alt="图片1" />
+			<p>伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~</p>
+		</label>
+		<label>
+			<input type="checkbox"><img src="../images/4.jpg" alt="图片1" />
+			<p>伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~伤不起啊~~~</p>
+		</label>		
+	</div>
+	<label><input type="checkbox" id="checkAll">全选</label><a href="javascript:void(0)" id="del">删除</a>
+</div>
+</body>
+</html>

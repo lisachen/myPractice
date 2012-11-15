@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<ul>
+	<li><a href="#"><img src="images/2.gif" title="猫咪1" /></a></li>
+    <li><a href="#"><img src="images/1.gif" title="猫咪2"/></a></li>
+	<li><a href="#"><img src="images/3.gif" title="猫咪3"/></a></li>
+</ul>
+<script type="text/javascript">
+	$(function(){
+		$('li').each(function(index){
+			var txt = $('img').attr("title");
+			$(this).append("<span>"+txt+"<br>"+"134567890"+"</span>");		
+		});
+		$('li').hover(function(){
+			$(this).children("span").stop(false,true).animate({top:0},'slow')
+		},function(){
+			$(this).children("span").stop(false,true).animate({top:80},'slow');	
+		});
+	});
+</script>
+<body>
+</body>
+</html>

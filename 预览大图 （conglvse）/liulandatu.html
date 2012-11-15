@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>浏览大图</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<ul>
+    <li><img src="images/blue_one_small.jpg" />衬衫<br />￥123</li>
+    <li><img src="images/yellow_one_small.jpg" />衬衫<br />￥123</li>
+    <li><img src="images/green_one_small.jpg" />衬衫<br />￥123</li>
+</ul>
+<div id="1" class="large_Img" style="display:none;">
+	<div class="main"></div>
+    <a class="close" href="#"></a>
+</div>
+<script>
+$(function(){
+	$('ul>li').hover(function(){
+		$(this).append('<span>&nbsp;</span>')
+	},function(){
+		$('span').remove();	
+	});
+	$('ul>li').click(function(){
+		$('#1').show();
+		var img = $($(this).find("img")).clone();
+		img.appendTo('#1');
+	});
+	$('.close').click(function(){
+		$('#1').hide();
+	});
+});
+</script>
+</body>
+</html>

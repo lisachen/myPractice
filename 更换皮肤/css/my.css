@@ -1,0 +1,32 @@
+
+ul{
+	margin:0px;
+	padding:0px;
+	width:100px;
+	border:1px solid #FFF;
+	list-style:none;
+}
+
+ul li{
+	margin:4px;
+	display:inline-block;
+	width:20px;
+	height:20px;
+	border-radius:3px;
+}
+
+ul li#gray{
+	background-color:gray;
+}
+
+ul li#red{
+	background-color:red;
+}
+
+ul li#blue{
+	background-color:blue;
+}
+
+ul li.active{
+	background-image:url(../images/select.png);
+}

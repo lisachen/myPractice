@@ -1,0 +1,120 @@
+body{
+	behavior:url(../js/tool_ie6hover.htc);
+}
+
+a,ul,li{
+	list-style:none;
+	margin:0;
+	padding:0;
+	list-style:none;
+	text-decoration:none;
+}
+
+.certificate{
+	position:relative;/*相对路径*/
+	margin:auto;
+	width:746px;
+	height:575px;
+	background:url(../images/certificate-final.jpg) no-repeat;
+	font:28px/30px "微软雅黑";
+}
+
+.certificate_user{
+	position:absolute;/*绝对路径*/
+	top:210px;
+	left:312px;
+	color:#F00;
+}
+
+.certificate_name{
+	position:absolute;
+	top:300px;
+	left:290px;
+	color:#00F;
+}
+
+.certificate_time{
+	position:absolute;
+	top:364px;
+	left:310px;
+	font-size:18px;
+	color:#00F;
+}
+
+.certificate_day{
+	position:absolute;
+	top:364px;
+	left:470px;
+	font-size:18px;
+	color:#00F;
+}
+
+.certificate_instructors{
+	position:absolute;
+	top:457px;
+	left:323px;
+	font-size:18px;
+	color:#00F;	
+}
+
+.certificate_score{
+	position:absolute;
+	top:430px;
+	left:500px;
+}
+
+.certificate_score a{
+	display:inline-block;
+	}
+
+.certificate_score_1{
+	display:block;	
+	color:#FF0;
+    background: red;
+    width: 80px;
+    height: 80px;
+	line-height:80px;/*文字垂直居中*/
+	text-align:center;
+	z-index:99999;
+	-moz-border-radius:40px;
+	-webkit-border-radius:40px;
+	 border-radius:40px;
+	 behavior:url(../js/tool_iecss3.htc);
+}
+
+.certificate_score a:hover{
+	opacity:0.8;
+	filter:alpha(opacity=70);
+}
+
+.certificate_score a:hover .certificate_score_info{
+	display:inline-block;
+}
+
+.certificate_score_info{	
+	display:none;
+	position:absolute;
+	top:-50px;;
+	left:90px;
+	font-size:14px;
+	width:100px;
+	min-height:60px;
+	background:#000;
+	color:#fff;
+	padding:10px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	 border-radius:4px;
+	 opacity:0.7;
+	 filter:alpha(opacity=70);
+	 behavior:url(../js/tool_iecss3.htc);
+}
+
+.certificate_score_info em{
+	position:absolute;
+	top:60px;
+	left:-5px;
+	border-top:5px solid transparent;
+	border-right:5px solid #000;
+	border-bottom:5px solid transparent;
+}

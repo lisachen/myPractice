@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态显示图片信息</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+<ul>
+	<li><a href="#"><img src="images/01.gif" title="猫咪-1"/></a></li>
+    <li><a href="#"><img src="images/02.gif" title="猫咪-2"/></a></li>
+    <li><a href="#"><img src="images/03.gif" title="猫咪-3"/></a></li>
+    <li><a href="#"><img src="images/04.gif" title="猫咪-4"/></a></li>
+</ul>
+<script>
+$(function(){
+	var x=10;
+	var y=20;
+	$('ul>li').mouseover(function(e){
+		var imgTitle=$(this).find('img').attr('title');
+		var imgSrc=$(this).find('img').attr('src');
+		var content='<div class="main"><img src='+imgSrc+'/>'+'<span>'+imgTitle+'</span>'+'</div>';
+		$("body").append(content);
+		$(".main").css({"top":(e.pageY+y)+"px","left":(e.pageX+x)+"px"}).show("fast");
+	}).mouseout(function(){
+		$(".main").remove();	
+	}).mousemove(function(e){
+		$(".main").css({"top":(e.pageY+y)+"px","left":(e.pageX+x)+"px"}).show("fast");
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+body,p,input{
+	margin:0;
+	padding:0;
+	}
+.container{
+	margin:30px auto;
+	width:500px;
+	}
+.container>p{
+	padding:0 10px;
+	height:32px;
+	line-height:32px;
+	border-radius:5px;
+	box-shadow:1px 1px 2px #ddd;
+	background:-moz-linear-gradient(top,#C9F 50%,#C0F 51%,#C6F);
+	color:#fff;
+	}
+p input{margin-right:5px;}
+#container_list label{
+	display:block;
+	padding:10px;
+	border-bottom:1px dashed #C6F;
+	overflow:auto;
+	}
+#container_list label:hover{background:#C9F;}
+label input,
+label img,
+label p{
+	float:left;
+	margin-right:30px;
+	color:#90C;
+	text-shadow:0 1px #ccc;
+	}
+label input{
+	height:84px;
+	line-height:84px;
+	}
+label img{
+	float:left;
+	width:80px;
+	height:80px;
+	border:2px solid;
+	border-color:#fff #ccc #ccc #fff;
+	}
+label p{width:289px;}
