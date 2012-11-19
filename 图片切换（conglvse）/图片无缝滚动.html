@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<TITLE>图片无缝滚动</TITLE>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+</head>
+<body>
+<div class="main">
+	<ul class="main_header">
+		<li><h3>卡通动漫</h3></li>
+        <li class="main_header_num">
+        	<a href="#1" class="active"><span></span></a>
+            <a href="#2"><span></span></a>
+            <a href="#3"><span></span></a>
+        </li>
+        <li class="main_header_btn">
+        	<em class="main_header_left"  onmousedown="goUp()" onmouseup="stopUp()" onmousemove="stopUp()"></em>
+            <em class="main_header_right" onmousedown="goDown()" onmouseup="stopDown()" onmousemove="stopDown()"></em>
+        </li>
+        <li class="main_header_more"><a href="#">更多...</a></li>
+   </ul>
+   <div class="main_body" id="imgBox">
+	 	<div  class="main_img clearfix">
+       <ul id="imgList">
+          <li><a href="#"><img src="images/2.gif" width="100" height="100" title="猫咪1" /></a></li>
+          <li><a href="#"><img src="images/1.gif" width="100" height="100" title="猫咪2"/></a></li>
+          <li><a href="#"><img src="images/3.gif" width="100" height="100" title="猫咪3"/></a></li>
+          <li><a href="#"><img src="images/07.gif" width="100" height="100" title="猫咪4" /></a></li>
+          <li><a href="#"><img src="images/1.gif" width="100" height="100" title="猫咪5" /></a></li>
+          <li><a href="#"><img src="images/2.gif" width="100" height="100" title="猫咪6" /></a></li>
+          <li><a href="#"><img src="images/07.gif" width="100" height="100" title="猫咪7" /></a></li>
+		  		<li><a href="#"><img src="images/09.gif" width="100" height="100" title="猫咪8" /></a></li>
+       </ul>
+	   <ul id="imgList_clone"></ul>
+		</div>
+   </div>
+</div>
+</body>
+<script>
+	var Speed=1,//速度（毫秒）
+		Space=5,//每次移动的距离（px）
+		PageWidth=GetObj('imgBox').clientWidth,//显示宽度
+		fill=0,//整体移位
+		MoveLock = false,//鼠标出错
+		MoveTimeObj,
+		Comp = 0,
+		AutoPlayObj = null,
+		imgBox=GetObj('imgBox');
+	GetObj('imgList_clone').innerHTML=GetObj('imgList').innerHTML;
+	imgBox.scrollLeft=fill;//设置位于对象左边界和窗口中目前可见内容的最左端之间的距离
+	AutoPlay();
+	imgBox.onmouseover=function(){
+		clearInterval(AutoPlayObj);//清除计时器
+	}
+	imgBox.onmouseout = function(){
+		AutoPlay();
+	}
+	//====自定义函数===
+	function GetObj(idName){//通过id获取对象
+		if(document.getElementById){
+			return eval('document.getElementById("'+idName+'")');
+		}else{	
+			return eval('document.all.'+idName);
+		}
+	}
+	function AutoPlay(){//自动滚动
+		clearInterval(AutoPlayObj);//清除计时器
+		AutoPlayObj = setInterval('goDown();stopDown();',3000); //间隔时间
+	}
+	
+	function goUp(){ //上翻开始
+	 if(MoveLock) return;
+	 clearInterval(AutoPlayObj);
+	 MoveLock = true;
+	 MoveTimeObj = setInterval('moveLeft();',Speed);
+	}
+	function stopUp(){ //上翻停止
+	 clearInterval(MoveTimeObj);
+	 if(imgBox.scrollLeft % PageWidth - fill != 0){
+	  Comp = fill - (imgBox.scrollLeft % PageWidth);
+	  CompScr();
+	 }else{
+	  MoveLock = false;
+	 }
+	 AutoPlay();
+	 }
+	function goDown(){ //下翻开始
+		clearInterval(MoveTimeObj);	
+		if(MoveLock) return;
+		clearInterval(AutoPlayObj);
+		MoveLock = true;
+		moveRight();
+		MoveTimeObj = setInterval('moveRight();',Speed);
+	}
+	function stopDown(){ //下翻停止
+		clearInterval(MoveTimeObj);
+		if(imgBox.scrollLeft % PageWidth - fill != 0 ){
+			Comp = PageWidth - imgBox.scrollLeft % PageWidth + fill;
+			CompScr();
+		}else{
+			MoveLock = false;
+		}
+		AutoPlay();
+	}
+function moveLeft(){ //每次向左移动Space个像素
+		if(imgBox.scrollLeft <= 0){//如果左边的距离小于0
+			imgBox.scrollLeft = imgBox.scrollLeft + GetObj('imgList').offsetWidth;//包括边线的宽,
+		}
+		imgBox.scrollLeft -= Space ;
+	}
+	function moveRight(){ //每次向右移动Space个像素
+		if(imgBox.scrollLeft >= GetObj('imgList').scrollWidth){
+			imgBox.scrollLeft = imgBox.scrollLeft - GetObj('imgList').scrollWidth;
+		}
+		imgBox.scrollLeft += Space ;
+	}
+function CompScr(){
+ var num;
+ if(Comp == 0){MoveLock = false;return;}
+ if(Comp < 0){ //上翻
+  if(Comp < -Space){
+   Comp += Space;
+   num = Space;
+  }else{
+   num = -Comp;
+   Comp = 0;
+  }
+  imgBox.scrollLeft -= num;
+  setTimeout('CompScr()',Speed);
+ }else{ //下翻
+  if(Comp > Space){
+   Comp -= Space;
+   num = Space;
+  }else{
+   num = Comp;
+   Comp = 0;
+  }
+  imgBox.scrollLeft += num;
+  setTimeout('CompScr()',Speed);
+ }
+}
+
+</script>
+</html>
