@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>瀑布流</title>
+<style>
+body{
+	background-color:#FEFEFE;
+}
+ul li{
+list-style:none;
+}
+a{
+text-underline:none;
+}
+img{
+border:0;
+width:100%;
+}
+.wrap{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	padding:0;
+	position:relative;
+}
+.wrap li{
+	float:left;
+	display:inline-block;
+	border:1px solid #DDD;
+	width:180px;	
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	-khtml-border-radius:2px;
+	border-radius:2px;
+}
+
+</style>
+</head>
+<body>
+<ul class="wrap" id="wrap">
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (1).jpg" alt="" /></a>
+		<p>内容1</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (2).jpg" alt="" /></a>
+		<p>内容2</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (3).jpg" alt="" /></a>
+		<p>内容3</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (4).jpg" alt="" /></a>
+		<p>内容4</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (5).jpg" alt="" /></a>
+		<p>内容5</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (6).jpg" alt="" /></a>
+		<p>内容6</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (7).jpg" alt="" /></a>
+		<p>内容7</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (8).jpg" alt="" /></a>
+		<p>内容1</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (9).jpg" alt="" /></a>
+		<p>内容2</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (10).jpg" alt="" /></a>
+		<p>内容3</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (11).jpg" alt="" /></a>
+		<p>内容4</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (12).jpg" alt="" /></a>
+		<p>内容5</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (13).jpg" alt="" /></a>
+		<p>内容6</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (14).jpg" alt="" /></a>
+		<p>内容7</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (15).jpg" alt="" /></a>
+		<p>内容1</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (16).jpg" alt="" /></a>
+		<p>内容2</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (17).jpg" alt="" /></a>
+		<p>内容3</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (18).jpg" alt="" /></a>
+		<p>内容4</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (19).jpg" alt="" /></a>
+		<p>内容5</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (20).jpg" alt="" /></a>
+		<p>内容6</p>
+	</li>
+	<li>
+		<a href="javascript:void(0)"><img src="images/pic (21).jpg" alt="" /></a>
+		<p>内容7</p>
+	</li>
+</ul>
+<script>
+window.onload=function(){
+ var wrap=document.getElementById('wrap'),
+	content=wrap.getElementsByTagName('li'),
+	wrapWidth=wrap.offsetWidth,//获取宽度包括padding和border
+	liWidth=content[0].offsetWidth,
+	colNum=Math.floor(wrapWidth/liWidth),//计算列数
+	padding=Math.floor((wrapWidth-liWidth*colNum)/(colNum+1)),//计算外框元素剩余宽度并计算左右留白
+	len=content.length,//li的个数
+	top=20,//离顶部的距离
+	column=new Array();
+
+	
+ for(var i=0;i<colNum;i++){
+	column[i]=new Array();
+	column[i].top=top;
+	column[i].left=(liWidth*i)+padding*(i+1);//计算左边距离	
+ }
+ 
+			
+ for(var i=0;i<len;i++){
+	var row=i+1;
+	if(row%colNum==0){//计算元素在第几列
+		sub=colNum;
+	}else{
+		sub=row%colNum;
+	}
+	
+	content[i].style.position = "absolute" ;
+	content[i].style.top=column[sub-1].top+'px';
+	content[i].style.left=column[sub-1].left+'px';
+	column[sub-1].top += content[i].offsetHeight + top ;
+ }
+ 
+
+	
+}	
+</script>
+</body>
+</html>
