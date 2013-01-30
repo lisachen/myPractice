@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{magrin:0;padding:0;}
+.tooltip{
+	position:absolute;
+	top:0;
+	left:0;
+	  max-width: 200px;
+  padding: 3px 8px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #000000;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+	
+}
+.tooltip em{
+	display:block;
+ position: absolute;
+  border-color: transparent;
+  border-style: solid;
+	 top:-5px;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-color: #000000;
+  border-width: 0 5px 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div style="margin:40px;">
+<p id="p1">时隔近三年，“倒房号”再次重现江湖。北京房地产市场中据说黄牛党“<a href="#" rel="tooltip" title="12323434">倒房号</a>”5万元一个。另据报道，进入12月，北京楼市再掀涨价潮，有二手房一天提价70万元。（12月13日《<a href="#"  rel="tooltip" title="无论是新房价格还是二手房价格，或是房租价格">21世纪经济报道</a>》）.此前还推出了<a href="#" rel="tooltip" title="无论是新房价格还是二手房价格，或是房租价格">QE3</a>，对于包括中国在内的新兴经济体形成了通胀压力，买房成为公众抵御通胀的首选。
+</p>
+
+</div>
+<script>
+window.onload=function(){
+	var link=document.getElementById('p1');
+	link.onmouseover=function(){
+	}
+}
+//window.onload=function(){
+//	var link=document.getElementsByTagName('a');
+//	var t=new ToolTip({
+//		node:link
+//		});
+//}
+////function $(id){doucment.getElementById(id)}
+//function ToolTip(args){//args 一个对象
+///*{
+//	title:'',
+//	node:node,
+//	className:''
+//}*/
+//	this.node=args.node;
+//	this.title=args.title||args.node.getAttribute('title');
+//	this.node.removeAttribute('title');//清除浏览器默认tooltip
+//	this.layer=document.createElement('div');
+//	this.layer.innerHTML='<em></em>'+this.title;
+//	this.layer.className=['tooltip',args.className].join(' ');
+//	
+//	this.hide();
+//	document.body.appendChild(this.layer);
+//	var _this=this;
+//	this.node.onmouseover=function(e){
+//		_this.show(e);
+//	}
+//	this.node.onmouseout=function(){
+//		_this.hide();
+//	}
+//}
+//ToolTip.offset=20;
+//ToolTip.prototype={
+//	show:function(e){
+//		var e = event ? event :(window.event ? window.event : null); 
+//		var x=e.pageX,
+//			y=e.pageY,
+//			//页面窗口的大小，viewportSize
+//			dw=document.documentElement.clientWidth+document.documentElement.scrollLeft,
+//			dh=document.documentElement.clientHeight+document.documentElement.scrollTop;
+//		
+//		x-=100;
+//		y+=ToolTip.offset;	
+//		
+//		if(x+this.layer.clientWidth>dw){
+//			x-=this.layer.clientWidth-ToolTip.offset*2;
+//		}
+//		if(y+this.layer.clientHeight>dh){
+//			y-=this.layer.clientHeight-ToolTip.offset*2;
+//		}
+//		this.layer.style.left=x+'px';
+//		this.layer.style.top=y+'px';
+//		this.layer.style.visibility="visible";
+//	},
+//	hide:function(){
+//		this.layer.style.visibility='hidden';
+//	}
+//
+//};
+</script>
+</body>
+</html>

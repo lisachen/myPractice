@@ -197,14 +197,15 @@
 }
 .header_btn li a {
 	margin-right:6px;
-	font-weight:bold;
+	font-weight:bold;	
 }
-.header_btn li img {
+.header_btn li a img {
+	float:left;
 	width:30px;
 	height:30px;
-	float:left;
 	margin-right:4px;
 	margin-left:-8px;
+	max-width: none;
 }
 .header em {
 	display:block;
@@ -244,7 +245,6 @@
 	padding: 0 15px;
 }
 .mainNav li:hover {
-	text-decoration:underline;
 	border-color:#D71F69;
 	background-color:#E32F77;
 }
@@ -297,7 +297,7 @@
 	padding:1px 4px;
 	font:20px/1.5 "微软雅黑";
 }
-.menu li a.active {
+.menu li a.active,.menu li a:hover {
 	color:#333;
 	background-color:#FFF6F6;
 	-webkit-border-radius:2px;
@@ -316,7 +316,7 @@
 	font-weight:normal;
 	margin-left:10px;
 }
-.content_title a.active {
+.content_title a.active{
 	color:#fff;
 	background-color:#999;
 	padding:1px 6px;

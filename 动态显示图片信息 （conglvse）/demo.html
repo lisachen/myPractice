@@ -21,7 +21,7 @@ $(function(){
 	$('ul>li').mouseover(function(e){
 		var imgTitle=$(this).find('img').attr('title');
 		var imgSrc=$(this).find('img').attr('src');
-		var content='<div class="main"><img src='+imgSrc+'/>'+'<span>'+imgTitle+'</span>'+'</div>';
+		var content='<div class="main"><img src="'+imgSrc+'"/>'+'<span>'+imgTitle+'</span>'+'</div>';
 		$("body").append(content);
 		$(".main").css({"top":(e.pageY+y)+"px","left":(e.pageX+x)+"px"}).show("fast");
 	}).mouseout(function(){

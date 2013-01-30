@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#demo1 {
+	position:absolute;
+	top:150px;
+	left:20px;
+	width:100px;
+	height:100px;
+	background-color:blue;
+	border:1px solid #999;
+}
+</style>
+<script>
+window.onload=function(){
+	var demo1=document.getElementById("demo1");
+	animate(demo1,'left',-1,100,500,50);
+}
+function animate(o,attr,add,start,end,t){
+	//o 要进行动画的对象
+	//attr style属性
+	//add 增量
+	//t 时间间隔
+	//start 起始值
+	//end 结束值
+	var max=Math.max(start,end),
+			min=Math.min(start,end);
+	var timer=setInterval(function(){
+		if(add>0){
+			if(min>=max){clearInterval(timer);}
+			min+=add;
+			o.style[attr]=min+'px';
+		}else{
+			if(max<=min){clearInterval(timer);}
+			max+=add;
+			o.style[attr]=max+'px';
+		}
+		},t);
+}
+</script>
+</head>
+
+<body>
+<div id="demo1"></div>
+</body>
+</html>
