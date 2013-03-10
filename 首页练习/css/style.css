@@ -1,0 +1,370 @@
+/*=S 覆盖site.css*/
+body, input, textarea, select, td {
+	font-size: 12px;
+	font-family: "宋体", "Arial Narrow", HELVETICA, sans-serif;
+	line-height: normal;
+}
+a:link, a:visited, a:hover, a:active {/*设置链接line-height时四种状态都设，否则会被site.css覆盖*/
+	color: #000000;
+	line-height: normal;
+}
+/*=E 覆盖site.css*/
+
+* {
+	-webkit-box-sizing: border-box;/* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;   /* Firefox, other Gecko */
+	box-sizing: border-box;        /* Opera/IE 8+ */
+}
+.altxt {
+	position: absolute;
+	left: -9999em;
+	visibility: hidden;
+}
+/*.clearfix {
+	*zoom:1;
+	clear:both;
+}
+.clearfix:after {
+	content:" ";
+	clear:both;
+	display:block;
+}*/
+
+/**
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before, .clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+.clearfix:after {
+	clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+ *zoom: 1;
+}
+.clr {
+	clear: both;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+body {
+	background: url(../images/bg_bd.png) repeat;
+	color: #000;
+}
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.module-title {
+    margin:0;
+}
+/*=S 去掉链接外框 主要是ie*/
+/*v1
+a {
+    blr: expression(this.onFocus=this.close());
+    blr: expression(this.onFocus=this.blur());
+}
+a:focus {
+    -moz-outline-style: none;
+    outline: none;
+}
+*/
+/*v1.1
+a, area {
+	blr: expression(this.onFocus=this.blur());
+}
+:focus {
+    outline: none;
+}
+*/
+/*v2 是在标准模式下取得的
+:focus {解决label button虚线框
+	outline:none;
+}
+a {解决非ie虚线框
+    outline:none;
+}
+a:acitve {未使用a 效率优化
+    blr:expression(this.onFocus=this.blur());
+}
+a:focus {解决后退后显示虚线框
+	outline:none;
+}
+*/
+/*通过ie html属性 hidefocus处理*/
+/*=E 去掉链接外框 主要是ie*/
+
+/*=S 样式 */
+
+
+/*header start*/
+.header {
+	background: url(../images/bg_header.png) repeat-x;
+}
+.logo {
+	position: relative;
+	margin: 0 auto;
+	width: 1002px;
+	height: 104px;
+}
+.logo img {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 275px;
+	height: 47px;
+}
+.logo_loginbar {
+	position: absolute;
+	right: 0;
+	top: 12px;
+	color: #fff;
+	font-size: 14px;
+}
+.logo_loginbar a {
+	color: #fff;
+}
+.nav {
+	height: 36px;
+	background: url(../images/bg_nav.gif) repeat-x;
+}
+.nav_main, .nav_chn ul {
+	margin: 0 auto;
+	width: 1002px;
+}
+.nav_main li {
+	float: left;
+	width: 98px;
+}
+.nav_main li a {
+	display: block;
+	color: #DCE068;
+	font-size: 14px;
+	line-height: 36px;
+	font-weight: bold;
+	text-align: center;
+}
+.nav_main li a:hover {
+	color: #FFF;
+	background: url(../images/nav_active.png) center no-repeat;
+}
+.nav_chn {
+	position: absolute;
+	left: 0;
+	top: 140px;
+	width: 100%;
+	height: 35px;
+	background: url(../images/bg_nav_chn.png) repeat-x;
+}
+.nav_chn li {
+	float: left;
+	width: 68px;
+	background: url(../images/icon_2.gif) no-repeat left 50%;
+}
+.nav_chn li a {
+	padding-left: 2px;
+	color: #000;
+	font-size: 12px;
+	line-height: 30px;
+	font-weight: normal;
+}
+.nav_chn li a:hover {
+	color: #8B2808;
+	background: none;
+}
+.banner {
+	height: 355px;
+	background: url(../images/bg_banner.png) repeat-x;
+}
+.banner_main {
+	width: 1373px;
+	height: 355px;
+	background: url(../images/banner.gif) no-repeat center;
+}
+/*header over*/
+
+
+/*content start*/
+.content {
+	position:relative;
+	width: 1006px;
+	margin: 0 auto;
+	padding:20px;
+	background: url(../images/bg_content.png) repeat-y;
+}
+.content_mid {
+	width:430px;
+	margin-left:260px;
+	margin-right:289px;
+}
+.content_left {
+	position:absolute;
+	width: 250px;
+	top:20px;
+	left:20px;
+}
+.content_right {
+	width:279px;
+	position:absolute;
+	top:20px;
+	right:20px;
+}
+.hd h3{
+	display:inline;
+	margin: 0;
+	font-size: 14px;
+	color: #178917;
+	font-weight: bold;
+	padding: 4px 0 4px 18px;	
+}
+.module{
+	padding: 10px;
+	margin-bottom: 20px;	
+}
+.module .module-more{
+	float: right;
+	display: block;
+	width: 29px;
+	height: 7px;
+	margin-top: 6px;
+	background: url(../images/more.gif) no-repeat;
+	text-indent: -9999px;
+}
+.module .bd {
+	margin-top: 6px;
+}
+/*style01 start*/
+.style01 {
+	padding:10px 0;
+	background:url(../images/bg_style01_title.png) repeat-x 0 4px;	
+}
+.style01 .hd{
+	background:url(../images/icon_0.gif) no-repeat left 42%;
+}
+.style01 .module-title{
+	padding-right:14px;
+	border-bottom:4px solid #FFF;
+	
+}
+.style01 .hd span{
+	margin-left:2px;
+	font-weight:normal;
+	text-transform: uppercase;
+	color:#b6b5b5;
+	font-family:"微软雅黑","黑体","宋体";
+}
+.xyxw .bd .model{
+	width:430px;
+	height:190px;
+}
+/*style01 over*/
+
+/*style02 start*/
+.style02 {
+	border: 1px solid #ddd;
+	background: url(../images/bg_sidebar.png) repeat-x;
+}
+.style02 .hd{
+	padding-bottom:6px;
+	border-bottom: 1px solid #ddd;
+	background: url(../images/icon_title.gif) no-repeat left 42%;
+}
+.style02 .bd li {
+	color: #5a5a5a;
+	line-height: 2em;
+}
+.style02 .bd li a {
+	color: #5a5a5a;
+	line-height: 2em;
+	padding-left: 8px;
+	background: url(../images/list_style_0.png) left center no-repeat;
+}
+.style02 .bd li a:hover {
+	color: #C00108;
+	background: url(../images/list_style_1.png) left center no-repeat;
+}
+.style02 .bd p a {
+	color: #5a5a5a;
+	text-indent: 2em;
+	line-height: 1.5em;
+}
+.style02 .bd p {
+	color: #178917;
+	margin: 8px 0;
+}
+.style02 .bd_vote label {
+	text-align: left;
+	width: auto;
+	font-weight: normal;
+	margin: 0 10px 0 0;
+	float: left;
+	display: inline;
+	line-height: 1.8em;
+	font-size: 12px;
+}
+.style02 .bd_vote input {
+	float: left;
+	display: inline;
+	margin: 2px 12px 0 4px;
+}
+.style02 .bd_btn1 a {
+	width: 66px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-weight: bold;
+	color: #555;
+	margin: 10px 0 0 25px;
+	background: url(../images/btn_1.png) no-repeat;
+}
+/*style02 over*/
+
+
+/*content over*/
+
+
+
+
+
+
+
+/*=E 样式 */
+
+/*=S 后期维护 */
+/*put your css code here*/
+/*=E 后期维护 */
+
+/*=S 嵌套辅助 */
+.model {
+	background-color:#888888;
+}
+/*=S 嵌套辅助 */
+

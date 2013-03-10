@@ -1,0 +1,67 @@
+body, table {
+	font-family:"宋体", Tahoma, "Arial Narrow", HELVETICA, serif;
+	font-size:12px;
+}
+a {
+	display:inline-block;/*辅助line-height,处理div.li里面出现.lbFlag图标标记时"塌陷"问题*/
+	color:#000000;
+	line-height:21px;
+	text-decoration:none;
+}
+a:hover {
+	color:#999999;
+	text-decoration:none;
+}
+.Up {
+	BORDER-RIGHT: rgb(12,12,12) 1px solid; BORDER-TOP: rgb(233,244,249) 1px solid; BORDER-LEFT: rgb(233,244,249) 1px solid; CURSOR: hand; BORDER-BOTTOM: rgb(12,12,12) 1px solid
+}
+.Down {
+	BORDER-RIGHT: rgb(233,244,249) 1px solid; BORDER-TOP: rgb(12,12,12) 1px solid; FONT-SIZE: 10pt; BORDER-LEFT: rgb(12,12,12) 1px solid; CURSOR: hand; LINE-HEIGHT: 20pt; BORDER-BOTTOM: rgb(233,244,249) 1px solid; TEXT-DECORATION: none
+}
+.None {
+	BORDER-RIGHT: rgb(208,208,200) 1px solid; BORDER-TOP: rgb(208,208,200) 1px solid; BORDER-LEFT: rgb(208,208,200) 1px solid; CURSOR: hand; BORDER-BOTTOM: rgb(208,208,200) 1px solid
+}
+.title {
+	 line-height: 50px;FILTER: dropshadow(color=#D9D9D9,offx=1,offy=1); COLOR: #000000
+}
+.newsDefaultContent {
+	font-size:14px;	
+}
+
+/*button start*/
+a.btn, a.btnselected
+{
+	background: url(../user/images/leaderInfo_btnleft_un.gif) no-repeat;
+	height: 26px;
+	text-decoration: none;	
+	cursor: pointer;
+}
+a.btnselected
+{
+	background: url(../user/images/leaderInfo_btnleft.gif) no-repeat;
+}
+.btn span, .btnselected span
+{
+	margin-left: 4px;
+	background: url(../user/images/leaderInfo_btnright_un.gif) no-repeat top right;
+	height: 26px;	
+	color: #000000;
+}
+.btnselected span
+{
+	background: url(../user/images/leaderInfo_btnright.gif) no-repeat top right;
+}
+.btn span.btnvalue, .btnselected span.btnvalue
+{
+	height: 12px;
+	font-size: 12px;
+	text-decoration: none;
+	padding: 6px 12px 4px 6px;
+	color: #00479d;
+	font-weight: bold;
+}
+.btnselected span.btnvalue
+{
+	color: #fff;
+}
+/*button over*/
