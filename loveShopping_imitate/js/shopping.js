@@ -13,6 +13,12 @@ function toTop_btn(){
        toTop.style.display = "none";  
     } 
 } 	
+//菜单
+$('.hd_nav_right li').hover(function(){
+	$(this).find('dl').show();
+},function(){
+	$(this).find('dl').hide();
+})
 
 //瀑布流图片相框
 $('#wrap .wrap_img').hover(function(){

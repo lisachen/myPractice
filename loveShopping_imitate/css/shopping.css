@@ -19,7 +19,8 @@
 	padding:0 5px 0 18px;
 }
 .hd_nav_right {
-	float:right;
+	position:absolute;
+	right:0;
 }
 .hd_nav_right li {
 	position:relative;
@@ -31,21 +32,17 @@
 	display:block;
 	border:1px solid #F5F5F5;
 	border-right:1px solid #BBB;
-	padding-right:10px;
+	padding-right:20px;
 	margin-right:6px;
-}
-.hd_nav_right li a:hover+dl, .hd_nav_right li:hover dl, .more a:hover+dl {
-	display:block;
 }
 .hd_nav_right li dl, .more dl {
 	position:absolute;
 	display:none;
 	right:5px;
-	top:18px;
+	top:20px;
 	background:#FFF;
 	border:1px solid #DDD;
 	padding:8px 10px;
-	width:78px;
 	white-space:nowrap;
 	line-height:1.7;
 	z-index:999;
@@ -55,14 +52,10 @@
 }
 .hd_nav_right li dl a {
 	border:none;
-	padding:0;
 	margin:0;
 }
 .hd_nav_right li.hd_nav_buy dl {
 	width:54px;
-}
-.hd_nav_right li dl a {
-	display:block;
 }
 /*购物车*/
 .hd_nav_cart {
@@ -88,6 +81,7 @@
 	overflow:hidden;
 	text-overflow:ellipsis;/*文本省略*/
 	white-space:nowrap;
+	padding:0;
 }
 .hd_nav_cart dt img {
 	float:left;
@@ -132,24 +126,27 @@
 .hd_nav_right .hd_nav_guild dl {
 	width:200px;
 }
-.hd_nav_guild dl dt a {
-	float:left;
-	display:block;
-	padding-right:7px;
-}
-.hd_nav_guild dl dt {
-	border-bottom:1px solid #EEE;
-	padding-bottom:5px;
-	margin-bottom:8px;
-}
-.hd_nav_guild dl dt h4 {
-	color:#999;
-	margin:0;
+.hd_nav_guild .hd_nav_guildTitle{
+	border:none;	
 }
 .hd_nav_guildTitle a {
 	color:#057BD2;
 	font-weight:bold;
 }
+.hd_nav_guild dl a {
+	float:left;
+	padding-right:7px;
+}
+.hd_nav_guild dl dt {
+	border-top:1px solid #EEE;
+	padding-top:5px;
+	color:#999;
+	font-weight:bold;
+}
+.hd_nav_guild dl dd{
+	padding-bottom:5px;
+}
+
 /*----头部菜单--end----*/
 
 /*----头部展示----*/
@@ -167,7 +164,9 @@
 	margin-right:20px;
 }
 .header_btn {
-	float:right;
+	position:absolute;
+	right:0;
+	top:0;
 	border:1px solid #DADADA;
 	margin-top: 20px;
 	background-image:-webkit-linear-gradient(#fff, #f4f4f4);
@@ -190,13 +189,14 @@
 	background-color:#fff;
 }
 .header_btn li {
+	position:relative;
 	height: 30px;
 	line-height:30px;
 	padding:4px 8px 4px 12px;
 	border-right:1px solid #DADADA;
 }
 .header_btn li a {
-	margin-right:6px;
+	margin-right:20px;
 	font-weight:bold;	
 }
 .header_btn li a img {
