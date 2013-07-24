@@ -67,8 +67,7 @@ li {
 	height: 46px;
 	top:50%;
 	background: url(image/page_button.gif) 0 0 no-repeat;
-	overflow: hidden;
-	text-indent: -999px;
+	cursor:pointer;
 }
 #detailImg-pre {
 	left: 0;
@@ -143,8 +142,8 @@ li {
 		<a id="smallImg-pre"></a>
 		<div id="smallImg-box" class="box">
 			<ul id="smallImg-ul" class="imgUl">
-				<li><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
-				<li class="cur"><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
+				<li class="cur"><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
+				<li><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
 				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
 				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
 				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
@@ -182,50 +181,57 @@ li {
 <script>
 $(function(){
 	slide(9,$('#smallImg-box'),$('#smallImg-ul'),$('#smallImg-pre'),$('#smallImg-next'));
-	//slide(1,$('#detailImg-box'),$('#detailImg-ul'),$('#detailImg-pre'),$('#detailImg-next'));
-	var img=[
-		{
-			'href':'www.baidu.com',
-			'alt':'图片1',
-			'src':'image/01.jpg',
-			'title':'标题111'
-		},{
-			'href':'www.baidu1.com',
-			'alt':'图片2',
-			'src':'image/02.jpg',
-			'title':'标题222'
-		},{
-			'href':'www.baidu.com',
-			'alt':'图片3',
-			'src':'image/03.jpg',
-			'title':'标题333'
-		},{
-			'href':'www.baidu.com',
-			'alt':'图片4',
-			'src':'image/04.jpg',
-			'title':'标题444'
-		},{
-			'href':'www.baidu.com',
-			'alt':'图片5',
-			'src':'image/05.jpg',
-			'title':'标题555'
-		}
-	]
 	var i=0,
 		len=img.length;	
 	$('#detailImg-next').click(function(){
 		if(i<len){
 			++i;
 			img_info(i);
+			a_s_r($('#smallImg-ul li').eq(i),'cur');
 		}
 	})
 	$('#detailImg-pre').click(function(){
 		if(i>0){
 			--i;
 			img_info(i);
+			a_s_r($('#smallImg-ul li').eq(i),'cur');
 		}
 	})
+	$('#smallImg-ul li').click(function(){
+		var _this=$(this),
+			i=$(this).index();
+		img_info(i);
+		a_s_r(_this,'cur');
+	})
 })
+var img=[
+	{
+		'href':'www.baidu.com',
+		'alt':'图片1',
+		'src':'image/01.jpg',
+		'title':'标题111'
+	},{
+		'href':'www.baidu1.com',
+		'alt':'图片2',
+		'src':'image/02.jpg',
+		'title':'标题222'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片3',
+		'src':'image/03.jpg',
+		'title':'标题333'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片4',
+		'src':'image/04.jpg',
+		'title':'标题444'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片5',
+		'src':'image/05.jpg',
+		'title':'标题555'
+	}
+]
 //大图图片信息
 function img_info(i){
 	var href=img[i].href,
@@ -247,19 +253,19 @@ function slide(i,$box,$ul,$pre,$next){
 	if(!$ul.is(':animated')){	
 		$next.click(function(){
 			if(page==page_count){
-				$ul.animate({left:'0px'},'show');
+				$ul.animate({left:'0px'},1600);
 				page=1;	
 			}else{
-				$ul.animate({left:'-='+box},'show');//left=left-_width
+				$ul.animate({left:'-='+box},1600);
 				page++;
 			}
 		})
 		$pre.click(function(){
 			if(page==1){
-				$ul.animate({left:"-="+box*(page_count-1)},'show');
+				$ul.animate({left:"-="+box*(page_count-1)},1600);
 				page=page_count;
 			}else{
-				$ul.animate({left:"+="+box},'show');
+				$ul.animate({left:"+="+box},1600);
 				page--;
 			}
 		})
