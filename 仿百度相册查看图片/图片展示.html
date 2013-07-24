@@ -49,17 +49,17 @@ li {
 /*detailImg*/
 #detailImg-box {
 }
-.detailImg li {
-	float: left;
-	width: 684px;
-}
-.detailImg li a {
-	display:block;
+
+.detailImg{
+	text-align:center;
 }
 .detailImg img {
 	max-width: 684px;
 }
-
+.detailImg p{
+	text-align:left;
+	color:#999;
+}
 #detailImg-pre,
 #detailImg-next {
 	position: absolute;
@@ -135,14 +135,7 @@ li {
 	<div class="detailImg" > 
 		<a id="detailImg-pre"></a>
 		<div id="detailImg-box" class="box">
-			<ul id="detailImg-ul" class="imgUl">
-				<li><a href="#"><img alt="大图1" src="image/01.jpg"></a><p>标题111111111</p></li>
-				<li><a href="#"><img alt="大图2" src="image/02.jpg"></a><p>标题2222222221</p></li>
-				<li><a href="#"><img alt="大图3" src="image/03.jpg"></a><p>标题3333333333</p></li>
-				<li><a href="#"><img alt="大图4" src="image/04.jpg"></a><p>标题44444444441</p></li>
-				<li><a href="#"><img alt="大图5" src="image/05.jpg"></a><p>标题55555555555</p></li>
-				<li><a href="#"><img alt="大图6" src="image/06.jpg"></a><p>标题66666666661</p></li>
-			</ul>
+			<div class="detailImg-main"><a href="#"><img alt="大图1" src="image/01.jpg"></a><p>标题111111111</p></div>
 		</div>
 		<a id="detailImg-next"></a> 
 	</div>
@@ -189,69 +182,92 @@ li {
 <script>
 $(function(){
 	slide(9,$('#smallImg-box'),$('#smallImg-ul'),$('#smallImg-pre'),$('#smallImg-next'));
-	slide(1,$('#detailImg-box'),$('#detailImg-ul'),$('#detailImg-pre'),$('#detailImg-next'));
-	function slide(i,$box,$ul,$pre,$next){
-		var page=1,
-			box=$box.width(),//显示的长度
-			len=$ul.find('li').length,//计算li的个数
-			page_count=Math.ceil( len/i);
-		if(!$ul.is(':animated')){	
-			$next.click(function(){
-				if(page==page_count){
-					$ul.animate({left:'0px'},'show');
-					page=1;	
-				}else{
-					$ul.animate({left:'-='+box},'show');//left=left-_width
-					page++;
-				}
-			})
-			$pre.click(function(){
-				if(page==1){
-					$ul.animate({left:"-="+box*(page_count-1)},'show');
-					page=page_count;
-				}else{
-					$ul.animate({left:"+="+box},'show');
-					page--;
-				}
-			})
+	//slide(1,$('#detailImg-box'),$('#detailImg-ul'),$('#detailImg-pre'),$('#detailImg-next'));
+	var img=[
+		{
+			'href':'www.baidu.com',
+			'alt':'图片1',
+			'src':'image/01.jpg',
+			'title':'标题111'
+		},{
+			'href':'www.baidu1.com',
+			'alt':'图片2',
+			'src':'image/02.jpg',
+			'title':'标题222'
+		},{
+			'href':'www.baidu.com',
+			'alt':'图片3',
+			'src':'image/03.jpg',
+			'title':'标题333'
+		},{
+			'href':'www.baidu.com',
+			'alt':'图片4',
+			'src':'image/04.jpg',
+			'title':'标题444'
+		},{
+			'href':'www.baidu.com',
+			'alt':'图片5',
+			'src':'image/05.jpg',
+			'title':'标题555'
 		}
-	}
-	
+	]
+	var i=0,
+		len=img.length;	
+	$('#detailImg-next').click(function(){
+		if(i<len){
+			++i;
+			img_info(i);
+		}
+	})
+	$('#detailImg-pre').click(function(){
+		if(i>0){
+			--i;
+			img_info(i);
+		}
+	})
 })
-//$(function(){
-//		var auto=setInterval(scrolls,6000);//设置时间间隔
-//		function scrolls(){
-//			$('.main_header_right').click();
-//		}		
-//		var i=3;
-//		var page=1;	 
-//		var _width=$('.main_body').width();//显示的长度
-//		var len=$('.main_img').find('li').length;//计算li的个数
-//		var page_count=Math.ceil( len /i);  //取整-计算有几页
-//		if(!$('.main_img').is(':animated')){//判断图片是否在滚动状态
-//			$('.main_header_right').click(function(){
-//				if(page==page_count){
-//					$('.main_img').animate({left:'0px'},'show');
-//					page=1;	
-//				}else{
-//					$('.main_img').animate({left:'-='+_width},'show');//left=left-_width
-//					page++;
-//				}
-//				$('.main_header_num a').eq((page-1)).addClass("active").siblings().removeClass("active");//eq()选取指定index值的元素，从0开始 
-//			});
-//			$('.main_header_left').click(function(){
-//				if(page==1){
-//					$('.main_img').animate({left:"-="+_width*(page_count-1)},'show');
-//					page=page_count;
-//				}else{
-//					$('.main_img').animate({left:"+="+_width},'show');
-//					page--;
-//				}
-//				$('.main_header_num a').eq((page-1)).addClass("active").siblings().removeClass("active");
-//			});
-//		}
-//		
-//	});
+//大图图片信息
+function img_info(i){
+	var href=img[i].href,
+		alt=img[i].alt,
+		src=img[i].src,
+		title=img[i].title,
+		$main=$('.detailImg-main');
+	$main.find('a').attr('href',href);
+	$main.find('img').attr({'alt':alt,'src':src});
+	$main.find('p').text(title);
+}
+
+//小图滚动
+function slide(i,$box,$ul,$pre,$next){
+	var page=1,
+		box=$box.width(),//显示的长度
+		len=$ul.find('li').length,//计算li的个数
+		page_count=Math.ceil( len/i);
+	if(!$ul.is(':animated')){	
+		$next.click(function(){
+			if(page==page_count){
+				$ul.animate({left:'0px'},'show');
+				page=1;	
+			}else{
+				$ul.animate({left:'-='+box},'show');//left=left-_width
+				page++;
+			}
+		})
+		$pre.click(function(){
+			if(page==1){
+				$ul.animate({left:"-="+box*(page_count-1)},'show');
+				page=page_count;
+			}else{
+				$ul.animate({left:"+="+box},'show');
+				page--;
+			}
+		})
+	}
+}
+function a_s_r(o,c){
+	o.addClass(c).siblings().removeClass(c);	
+}
 </script>
 </body>
 </html>
