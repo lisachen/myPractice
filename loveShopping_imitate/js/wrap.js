@@ -13,20 +13,12 @@ function watefall(id){
  for(var i=0;i<colNum;i++){
 	column[i]=new Array();
 	column[i].top=top;
-	if(i==0){
-		column[i].left=0;
-	}else{
-	column[i].left=(liWidth*i)+padding*(i);}//计算左边距离	
+	i==0?column[i].left=0:column[i].left=(liWidth*i)+padding*(i);//计算左边距离	
  }
 		
  for(var i=0;i<len;i++){
 	var row=i+1;
-	if(row%colNum==0){//计算元素在第几列
-		sub=colNum;
-	}else{
-		sub=row%colNum;
-	}
-	
+	row%colNum==0?sub=colNum:sub=row%colNum;
 	content[i].style.position = "absolute" ;
 	content[i].style.top=column[sub-1].top+'px';
 	content[i].style.left=column[sub-1].left+'px';

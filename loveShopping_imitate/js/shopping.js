@@ -1,23 +1,25 @@
-window.onload=function(){
+$(function(){
 	watefall('wrap');//图片瀑布流
-	toTop_btn();// 向上按钮的显示隐藏
-}
-
-window.onscroll = function(){toTop_btn();} 
-function toTop_btn(){ 
-    var t = document.documentElement.scrollTop || document.body.scrollTop;  
-    var toTop= document.getElementById( "toTop" );
-    if( t >1 ) { 
-			toTop.style.display='block';
-    } else {
-       toTop.style.display = "none";  
-    } 
-} 	
-//菜单
-$('.hd_nav_right li').hover(function(){
-	$(this).find('dl').show();
-},function(){
-	$(this).find('dl').hide();
+	
+	//菜单	
+	$('.hd_nav_right').find('li').each(function(){
+		if($(this).find('div').length > 0) {
+			$('.hd_nav_right li').hover(function(){
+				$(this).find('.nav_more').stop(true,true).slideDown();
+			},function(){
+				$(this).find('.nav_more').stop(true,true).hide();
+			});
+		}
+	});
+})
+	
+$(window).scroll(function(){
+	var top=$(this).scrollTop(),
+		toTop=$('#toTop');
+	top>0?toTop.show():toTop.hide();
+})
+$('#toTop').click(function(){
+	$('body,html').animate({scrollTop:0} ,600);
 })
 
 //瀑布流图片相框
@@ -29,4 +31,3 @@ $('#wrap .wrap_img').hover(function(){
 },function(){
 	$(this).children('.add-album').hide();
 });
-
