@@ -143,36 +143,16 @@ li {
 		<div id="smallImg-box" class="box">
 			<ul id="smallImg-ul" class="imgUl">
 				<li class="cur"><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
-				<li><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
-				<li><a href="#"><img alt="图片一" src="image/6.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/7.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/8.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/9.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/10.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
-				<li><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/7.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/8.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/9.jpg"></a></li>
-				<li><a href="#"><img alt="图片一" src="image/1.jpg"></a></li>
-				<li><a href="#"><img alt="图片二" src="image/2.jpg"></a></li>
-				<li><a href="#"><img alt="图片三" src="image/3.jpg"></a></li>
-				<li><a href="#"><img alt="图片四" src="image/4.jpg"></a></li>
-				<li><a href="#"><img alt="图片五" src="image/5.jpg"></a></li>
+				<li><a><img alt="图片二" src="image/2.jpg"></a></li>
+				<li><a><img alt="图片三" src="image/3.jpg"></a></li>
+				<li><a><img alt="图片四" src="image/4.jpg"></a></li>
+				<li><a><img alt="图片五" src="image/5.jpg"></a></li>
+				<li><a><img alt="图片一" src="image/1.jpg"></a></li>
+				<li><a><img alt="图片二" src="image/2.jpg"></a></li>
+				<li><a><img alt="图片三" src="image/3.jpg"></a></li>
+				<li><a><img alt="图片四" src="image/4.jpg"></a></li>
+				<li><a><img alt="图片五" src="image/5.jpg"></a></li>
+				<li><a><img alt="图片一" src="image/6.jpg"></a></li>
 			</ul>
 		</div>
 		<a id="smallImg-next"></a> 
@@ -180,7 +160,7 @@ li {
 </div>
 <script>
 $(function(){
-	slide(9,$('#smallImg-box'),$('#smallImg-ul'),$('#smallImg-pre'),$('#smallImg-next'));
+	//slide(9,$('#smallImg-box'),$('#smallImg-ul'),$('#smallImg-pre'),$('#smallImg-next'));
 	var i=0,
 		len=img.length;	
 	$('#detailImg-next').click(function(){
@@ -203,33 +183,157 @@ $(function(){
 		img_info(i);
 		a_s_r(_this,'cur');
 	})
+
+	var i=9,
+		page=1,
+		box=$('#smallImg-box').width(),//显示的长度
+		$ul=$('#smallImg-ul'),
+		page_count=Math.ceil( len/i);
+	if(!$ul.is(':animated')){	
+		$('#smallImg-next').click(function(){
+			
+			
+			$ul.css('left',0);
+			$ul.animate({left:-box},1600);
+			var a=page*i-1;
+			if(a<len){
+				for(var k=0;k<i;k++,a++){
+						html='<li class=\"'+a+'\"><a><img alt=\"'+img[a].alt+'\" src=\"'+img[a].smallSrc+'\"></a></li>';
+						$ul.append(html);
+				}
+				if(page>1){	alert();
+					$ul.find('li:lt(9)').detach();//删除前9个li
+				}
+			}
+			page++;
+		})
+		$('#smallImg-pre').click(function(){
+			if(page==1){
+				$ul.animate({left:"-="+box*(page_count-1)},1600);
+				page=page_count;
+			}else{
+				$ul.animate({left:"+="+box},1600);
+				page--;
+			}
+		})
+	}
+
 })
 var img=[
 	{
 		'href':'www.baidu.com',
 		'alt':'图片1',
 		'src':'image/01.jpg',
+		'smallSrc':'image/1.jpg',
 		'title':'标题111'
 	},{
 		'href':'www.baidu1.com',
 		'alt':'图片2',
 		'src':'image/02.jpg',
+		'smallSrc':'image/2.jpg',
 		'title':'标题222'
 	},{
 		'href':'www.baidu.com',
 		'alt':'图片3',
 		'src':'image/03.jpg',
+		'smallSrc':'image/3.jpg',
 		'title':'标题333'
 	},{
 		'href':'www.baidu.com',
 		'alt':'图片4',
 		'src':'image/04.jpg',
+		'smallSrc':'image/4.jpg',
 		'title':'标题444'
 	},{
 		'href':'www.baidu.com',
 		'alt':'图片5',
 		'src':'image/05.jpg',
+		'smallSrc':'image/5.jpg',
 		'title':'标题555'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片6',
+		'src':'image/06.jpg',
+		'smallSrc':'image/6.jpg',
+		'title':'标题666'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片7',
+		'src':'image/07.jpg',
+		'smallSrc':'image/7.jpg',
+		'title':'标题777'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片8',
+		'src':'image/08.jpg',
+		'smallSrc':'image/8.jpg',
+		'title':'标题888'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片9',
+		'src':'image/09.jpg',
+		'smallSrc':'image/9.jpg',
+		'title':'标题999'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片10',
+		'src':'image/010.jpg',
+		'smallSrc':'image/10.jpg',
+		'title':'标题10101010'	
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片11',
+		'src':'image/011.jpg',
+		'smallSrc':'image/1.jpg',
+		'title':'标题11'
+	},{
+		'href':'www.baidu1.com',
+		'alt':'图片12',
+		'src':'image/012.jpg',
+		'smallSrc':'image/12.jpg',
+		'title':'标题12'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片13',
+		'src':'image/013.jpg',
+		'smallSrc':'image/13.jpg',
+		'title':'标题13'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片14',
+		'src':'image/014.jpg',
+		'smallSrc':'image/4.jpg',
+		'title':'标题14'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片15',
+		'src':'image/015.jpg',
+		'smallSrc':'image/15.jpg',
+		'title':'标题15'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片16',
+		'src':'image/016.jpg',
+		'smallSrc':'image/16.jpg',
+		'title':'标题16'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片17',
+		'src':'image/017.jpg',
+		'smallSrc':'image/17.jpg',
+		'title':'标题17'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片18',
+		'src':'image/018.jpg',
+		'smallSrc':'image/18.jpg',
+		'title':'标题18'
+	},{
+		'href':'www.baidu.com',
+		'alt':'图片19',
+		'src':'image/019.jpg',
+		'smallSrc':'image/19.jpg',
+		'title':'标题19'
 	}
 ]
 //大图图片信息
@@ -245,7 +349,7 @@ function img_info(i){
 }
 
 //小图滚动
-function slide(i,$box,$ul,$pre,$next){
+/*function slide(i,$box,$ul,$pre,$next){
 	var page=1,
 		box=$box.width(),//显示的长度
 		len=$ul.find('li').length,//计算li的个数
@@ -270,7 +374,7 @@ function slide(i,$box,$ul,$pre,$next){
 			}
 		})
 	}
-}
+}*/
 function a_s_r(o,c){
 	o.addClass(c).siblings().removeClass(c);	
 }
