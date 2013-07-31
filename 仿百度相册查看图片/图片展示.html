@@ -6,15 +6,14 @@
 </head>
 <style>
 /*base*/
-
-
-
-
 ul,
 li {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+img{
+	border:none;
 }
 .clearfix:before,
 .clearfix:after {
@@ -32,6 +31,7 @@ li {
 	width: 745px;
 	margin: 20px auto;
 	padding: 10px;
+	border:1px solid #f5f5f5;
 	box-shadow: 1px 0 6px 0 rgba(180, 180, 180, 0.4);
 }
 .imgUl {
@@ -69,6 +69,7 @@ li {
 	top: 50%;
 	background: url(image/page_button.gif) 0 0 no-repeat;
 	cursor: pointer;
+	text-indent:-9999px;
 }
 #detailImg-pre {
 	left: 0;
@@ -135,17 +136,22 @@ li {
 <script src="jquery-1.10.1.min.js"></script>
 <body>
 <div class="imgContainer">
-	<div class="detailImg" > <a id="detailImg-pre"></a>
+	<!--大图-->
+	<div class="detailImg" > 
+		<a id="detailImg-pre">&lt;</a>
 		<div id="detailImg-box" class="box"> </div>
-		<a id="detailImg-next"></a> </div>
-	<div class="smallImg"> <a id="smallImg-pre"></a>
+		<a id="detailImg-next">&gt;</a> 
+	</div>
+	<!--小图-->
+	<div class="smallImg"> 
+		<a id="smallImg-pre"></a>
 		<div id="smallImg-box" class="box">
 			<ul id="smallImg-ul" class="imgUl">
 			</ul>
 		</div>
-		<a id="smallImg-next"></a> </div>
+		<a id="smallImg-next"></a> 
+	</div>
 </div>
-<p id="text" style="position:fixed;left:10px;bottom:50px;">1111</p>
 <script>
 $(function(){
 	var i=0,//大图编号
@@ -153,126 +159,87 @@ $(function(){
 		cur=0;//当前图片编号
 		j=9,//默认显示小图个数
 		page=0,//小图的页码
-		$dImg_a=$('#detailImg-box a'),
+		$s_next=$('#smallImg-next'),//小图下一页
+		$s_pre=$('#smallImg-pre'),//小图上一页
 		box=$('#smallImg-box').width(),//显示的长度
 		$ul=$('#smallImg-ul'),//小图外层
 		$imgLi=$ul.find('li'),//小图li
-		html=_html='';//存放载入的代码
-	var _k;			
+		html=_html='';//存放载入的代码		
 	$('#detailImg-box').append('<a href=\"'+img[0].href+'\" class=\"detailImg_1\"><img alt=\"'+img[0].alt+'\" src=\"'+img[i].src+'\"></a><p>'+img[i].title+'</p>');
 	//大图	
 	$('#detailImg-next').click(function(){
-			i++;
-			cur(i);
-			img_info(i);
-			var imgCur=$('.smallImg_'+(i+1));
-			if(!imgCur.html()){
-				$('#smallImg-next').click();
-			} 
-			s_a_r($('.smallImg_'+(i+1)),'cur');//小图选中
+		++i;
+		detailImg_click($s_next,i,len);
 	})
 	$('#detailImg-pre').click(function(){
-			
-			--i;
-			cur(i);
-			img_info(i);
-			var imgCur=$('.smallImg_'+(i+1));
-			if(!imgCur.html()){
-				$('#smallImg-pre').click();
-			} 
-			s_a_r($('.smallImg_'+(i+1)),'cur');
+		--i;
+		detailImg_click($s_pre,i,len);
 	})
-	
-	function (){
-		cur(i);
-		img_info(i);
-		var imgCur=$('.smallImg_'+(i+1));
-		if(!imgCur.html()){
-			$('#smallImg-pre').click();
-		} 
-		s_a_r($('.smallImg_'+(i+1)),'cur');
-	}
 	//小图
-		for(var k=0;k<j;k++){
-			if(k<len){
-				html+='<li class=\"smallImg_'+(k+1)+'\"><a><img alt=\"'+img[k].alt+'\" src=\"'+img[k].smallSrc+'\"></a></li>';
-			}
-			else{
-				_k=k%len;
-				html+='<li class=\"smallImg_'+(_k+1)+'\"><a><img alt=\"'+img[_k].alt+'\" src=\"'+img[_k].smallSrc+'\"></a></li>';
-			}
-		}
+	for(var k=0;k<j;k++){
+		var _k=k%len;
+		s_html(_k);
+		html+=h;
+	}
 	$ul.append(html);
-	//$ul.css('left',-box);
 	$('.smallImg_1').addClass('cur');	
-		//小图下一页
-		$('#smallImg-next').click(function(){
-			if(!$ul.is(':animated')){
-				page++;
-				var a,_a,c;
-					a=page*j;
-				for(var k=0;k<j;k++,a++){
-					_a=a%len;
-					if(_a<0){
-						_a=len+_a;
-					}
-					c=_a==i?'cur':'';
-					$('#text').text('a='+a+';page='+page+';_a='+_a);
-					_html+='<li class=\"smallImg_'+(_a+1)+' '+c+'\"><a><img alt=\"'+img[_a].alt+'\" src=\"'+img[_a].smallSrc+'\"></a></li>';
-				}
-				$ul.append(_html);
-				$ul.css({'left':0,'right':'auto'});
-				$ul.animate({left:-box},1600,function(){
-					$ul.find('li:lt('+j+')').detach();
-					$ul.css('left',0);
-					_html='';
-				});//动画执行后,再删除前9个li,将left设回0
-				$('#smallImg-ul li').click(function(){
-					var _this=$(this);
-						i=$(this).attr('class').replace(/[^0-9]/ig,'')-1;
-					img_info(i);
-					s_a_r(_this,'cur');
-		
-				})
+	//小图下一页
+	$('#smallImg-next').click(function(){
+		if(!$ul.is(':animated')){
+			page++;
+			var a=page*j,_a,c;
+			for(var k=0;k<j;k++,a++){
+				smallImg_click(a,_a,len,i);
+				_html+=h;
 			}
-		})
-		//小图上一页
-		$('#smallImg-pre').click(function(){
-			if(!$ul.is(':animated')){
-				page--;
-				var a=(page-1)*j,_a,c;
-				$('#text').text('a='+a+';page='+page+';len='+len);
-				for(var k=0;k<j;k++,a--){
-					_a=a%len;
-					if(_a<0){
-						_a=len+_a;
-					}
-					c=_a==i?'cur':'';
-					_html='<li class=\"smallImg_'+(_a+1)+' '+c+'\"><a><img alt=\"'+img[_a].alt+'\" src=\"'+img[_a].smallSrc+'\"></a></li>'+_html;
-				}
-				$ul.prepend(_html).css({'right':box,'left':'auto'});
-				$ul.animate({right:0},1600,function(){
-					$ul.find('li:gt('+(j-1)+')').detach();//删除后9个li,从8开始
-					_html='';
-				});
-				$('#smallImg-ul li').click(function(){
-					var _this=$(this);
-						i=$(this).attr('class').replace(/[^0-9]/ig,'')-1;
-					img_info(i);
-					s_a_r(_this,'cur');
-		
-				})
+			$ul.append(_html);
+			$ul.css({'left':0,'right':'auto'});
+			$ul.animate({left:-box},1600,function(){
+				$ul.find('li:lt('+j+')').detach();
+				$ul.css('left',0);
+				_html='';
+			});//动画执行后,再删除前9个li,将left设回0
+			$('#smallImg-ul li').click(function(){//三处一样，不知道这个要怎么优化？？？
+				var _this=$(this);
+				i=_this.attr('class').replace(/[^0-9]/ig,'')-1;
+				img_info(i);
+				s_a_r(_this,'cur');
+				cur=i;
+			})
+		}
+	})
+	//小图上一页
+	$('#smallImg-pre').click(function(){
+		if(!$ul.is(':animated')){
+			page--;
+			var a=(page-1)*j,_a,c;
+			for(var k=0;k<j;k++,a--){
+				smallImg_click(a,_a,len,i);
+				_html=h+_html;
 			}
-				
-		})
-	
-$('#smallImg-ul li').click(function(){
-	var _this=$(this);
-		i=$(this).attr('class').replace(/[^0-9]/ig,'')-1;
-	img_info(i);
-	s_a_r(_this,'cur');
-	cur=i;
-})
+			$ul.prepend(_html).css({'right':box,'left':'auto'});
+			$ul.animate({right:0},1600,function(){
+				$ul.find('li:gt('+(j-1)+')').detach();//删除后9个li,从8开始
+				_html='';
+			});
+			$('#smallImg-ul li').click(function(){
+				var _this=$(this);
+				i=_this.attr('class').replace(/[^0-9]/ig,'')-1;
+				img_info(i);
+				s_a_r(_this,'cur');
+				cur=i;
+			})
+		}
+			
+	})
+	//点击小图
+	$('#smallImg-ul li').click(function(){
+		var _this=$(this);
+		i=_this.attr('class').replace(/[^0-9]/ig,'')-1;
+		img_info(i);
+		s_a_r(_this,'cur');
+		cur=i;
+	})
 })
 
 /*----自定义函数-----------*/
@@ -358,7 +325,7 @@ var img=[
 	},{
 		'href':'www.baidu.com',
 		'alt':'图片14',
-		'src':'image/14_s.jpg',
+		'src':'image/14_b.jpg',
 		'smallSrc':'image/14_s.jpg',
 		'title':'标题14'
 	},{
@@ -395,12 +362,35 @@ function img_info(i){
 function s_a_r(o,c){
 	o.addClass(c).siblings().removeClass(c);	
 }
-//计算图片编号
-function cur(i){
+//大图左右点击
+function i_cur(i,len){
 	i=i%len;
 	if(i<0){
 		i=len+i;
-	}	
+	}
+	return i;	
+}
+function detailImg_click($pn,i,len){
+	i_cur(i,len);
+	img_info(i);
+	var imgCur=$('.smallImg_'+(i+1));
+	if(!imgCur.html()){
+		$pn.click();
+	} 
+	s_a_r($('.smallImg_'+(i+1)),'cur');//小图选中
+}
+//小图左右点击
+function smallImg_click(a,_a,len,i){
+	_a=a;
+	_a=a%len;
+	if(_a<0){
+		_a+=len;
+	}
+	c=_a==i?'cur':'';
+	s_html(_a,c);
+}
+function s_html(_a,c){
+	return h='<li class=\"smallImg_'+(_a+1)+' '+c+'\"><a><img alt=\"'+img[_a].alt+'\" src=\"'+img[_a].smallSrc+'\"></a></li>';
 }
 </script>
 </body>
