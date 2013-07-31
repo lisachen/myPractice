@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>菱形导航菜单</title>
+<meta http-equiv="content-type" content="text/html;charset=gb2312">
+<style type="text/css">
+ul,li,a,span{margin:0;padding:0;list-style:outside none;height:25px;line-height:25px;display:block;}
+ul{padding-left:25px;}
+ul li{float:left;display:inline;margin-right:26px;}
+ul li a,ul li a span{background:url(http://www.codefans.net/jscss/demoimg/201112/navBg.png) -25px 0 no-repeat;}
+ul li a{padding:0 25px;font-size:12px;color:#FFF;position:relative;float:left;text-align:center;}
+ul li a span{position:absolute;top:0;width:25px;}
+ul li a .al{left:-25px;background-position:left 0;}
+ul li a .ar{right:-25px;background-position:right 0;}
+ul li a:hover{background-position:-25px -25px;}
+ul li a:hover .al{background-position:left -25px;}
+ul li a:hover .ar{background-position:right -25px;}
+ul li a:active,ul li.current a{background-position:-25px -50px;}
+ul li a:active .al,ul li.current a .al{background-position:left -50px;}
+ul li a:active .ar,ul li.current a .ar{background-position:right -50px;}
+</style>
+</head>
+<body>
+<ul>
+<li><a href="javascript:void(0)"><span class="al"></span>首页<span class="ar"></span></a></li>
+    <li><a href="javascript:void(0)"><span class="al"></span>关于我们<span class="ar"></span></a></li>
+    <li><a href="javascript:void(0)"><span class="al"></span>公司新闻<span class="ar"></span></a></li>
+    <li><a href="javascript:void(0)"><span class="al"></span>网上商城<span class="ar"></span></a></li>
+</ul>
+</body>
+</html> 
