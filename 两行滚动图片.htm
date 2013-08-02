@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>两行滚动图片</title>
+<style type="text/css">
+.clearfix:before, .clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix:after { clear: both; }
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.sliderImg {
+	position:relative;
+	width:508px;
+	height:362px;
+	overflow:hidden;
+	border:1px solid red;
+}
+.sliderImg img {
+	width:159px;
+	height:148px;
+	margin:0;
+}
+.slider { position:absolute; }
+.slider li {
+	float:left;
+	margin:5px;
+}
+.sliderImg p {
+	margin:0;
+	text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+	<div class="content">
+		<div class="sliderImg">
+			<ul class="slider clearfix">
+				<li> <a href="#"> <img src="images/20121125045153.jpg" alt="ͼ1"><p>ͼ1</p></a> </li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ2"><p>ͼ2</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ3"><p>ͼ3</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ4"><p>ͼ4</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ5"><p>ͼ5</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ6"><p>ͼ6</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ7"><p>ͼ7</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ8"><p>ͼ8</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ9"><p>ͼ9</p></a></li>
+				<li><a href="#"><img src="images/20121125045153.jpg" alt="ͼ0"><p>ͼ0</p></a></li>
+			</ul>
+		</div>
+	</div>
+	<!--/content--> 
+	<!--/footer--> 
+</div>
+<!--/wrapper--> 
+
+<script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript">
+	$(function(){
+		 $slider=$('.slider');
+		var len=$(".slider > li").length,
+			a=len%3;
+		if(len>6){
+			if(a!==0){
+				var num=3-a;
+				$('.slider li:lt('+num+')').clone().appendTo($slider);
+			}
+			$('.sliderImg').hover(function(){
+				 clearInterval(adTimer);
+			 },function(){
+				 adTimer = setInterval(function(){
+					 $slider.css('top',0);
+					 showImg();
+				  } , 2000);
+			 }).trigger("mouseleave");
+				
+		}
+	});
+	
+	function showImg(){
+	 var h = $(".slider li").height()+10;
+		$slider.animate({top : -h},1000);
+		$('.slider li:lt(3)').appendTo($slider);
+	}
+    </script>
+</body>
+</html>
